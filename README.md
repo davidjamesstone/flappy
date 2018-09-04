@@ -7,11 +7,12 @@
 ```js
 const flappy = require('flappy')
 
-flappy({ port: 3000 })
-  .use(require('blipp'))
+flappy({ port: 3000 })    // Takes the same args as Hapi.server
+  .use(require('blipp'))  // `use` a plugin, same args as server.register
   .use(require('inert'))
-  .use(require('vision'), opts)
+  .use(require('vision'), opts)   // Pass plugin options
   .use(require('./my-plugin'), opts2)
+  .use(require('./logging-plugin'), env.NODE_ENV === 'production')    // Conditional register
   .start()
   .then(server => console.log(server.info))
   .catch(err => {
@@ -19,17 +20,19 @@ flappy({ port: 3000 })
     process.exit(1)
   })
 ```
-### API
 
+### API
 
 #### `flappy(options) => this`
 
 `flappy` is a is a single function taking the same arguments as [`Hapi.server`](https://hapijs.com/api#server.options).
 
 
-#### `.use(plugins, [options]) => this`
+#### `.use(plugins, [options], [condition = true]) => this`
 
-The `use` method thales the same arguments as hapi's `server.register` function. See https://hapijs.com/api#server.register()
+The `use` method takes the same arguments as hapi's `server.register` function. See https://hapijs.com/api#server.register()
+
+There is an additional third parameter `condition` that can be used to conditionally register the plugin. Useful for when you only want to register a plugin in a certain env.
 
 #### `.start() => Promise<Hapi.server>`
 

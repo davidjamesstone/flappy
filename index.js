@@ -7,8 +7,16 @@ class Flappy {
     this.registrations = []
   }
 
-  use (plugin, options) {
-    this.registrations.push({ plugin, options })
+  use (plugin, options, condition = true) {
+    if (typeof options === 'boolean') {
+      condition = options
+      options = undefined
+    }
+
+    if (condition) {
+      this.registrations.push({ plugin, options })
+    }
+
     return this
   }
 

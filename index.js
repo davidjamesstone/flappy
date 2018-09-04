@@ -1,65 +1,31 @@
-const glue = require('glue')
+const hapi = require('hapi')
 
 class Flappy {
   constructor (options) {
-    // Server Options
-    const serverOptions = options.server || {}
-
-    if (!serverOptions.port) {
-      serverOptions.port = 3000
-    }
-
-    // if (!serverOptions.host) {
-    //   serverOptions.host = '0.0.0.0'
-    // }
-
-    // Manifest Options
-    this._manifestOptions = options.manifest
-    this._manifest = {
-      server: serverOptions,
-      register: {
-        plugins: []
-      }
-    }
+    const server = hapi.server(options)
+    this.server = server
+    this.registrations = []
   }
 
-  async compose () {
-    const server = await glue.compose(this._manifest, this._manifestOptions)
-    this._server = server
+  use (plugin, options) {
+    this.registrations.push({ plugin, options })
     return this
   }
 
   async start () {
-    await this.compose(this._manifest)
-    await this._server.start()
-    return this
+    await this.compose()
+    await this.server.start()
+    return this.server
   }
 
-  register (plugin, options, condition) {
-    this._manifest.register.plugins.push({
-      plugin: plugin,
-      options: options
+  async compose () {
+    const server = this.server
+    const regs = this.registrations
+    const promises = regs.map(reg => server.register(reg.plugin, reg.options))
+
+    return Promise.all(promises).then(results => {
+      return server
     })
-
-    return this
-  }
-
-  get manifest () {
-    return this._manifest
-  }
-
-  get server () {
-    return this._server
-  }
-
-  port (port) {
-    this._manifest.server.port = port
-    return this
-  }
-
-  host (host) {
-    this._manifest.server.host = host
-    return this
   }
 }
 

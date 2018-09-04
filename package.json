@@ -1,7 +1,7 @@
 {
   "name": "flappy",
   "version": "0.0.1",
-  "description": "Fluent hapi",
+  "description": "Fluent hapi server composer",
   "main": "index.js",
   "scripts": {
     "test": "lab"
@@ -24,10 +24,11 @@
   },
   "homepage": "https://github.com/davidjamesstone/flappy#readme",
   "dependencies": {
-    "glue": "^5.0.0"
+    "hapi": "^17.5.4"
   },
   "devDependencies": {
     "blipp": "^3.0.0",
+    "code": "^5.2.0",
     "inert": "^5.1.0",
     "lab": "^15.1.2"
   }

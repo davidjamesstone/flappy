@@ -48,7 +48,7 @@ flappy can support different versions of hapi. Adding support for a new version 
 
 By default NPM will resolve flappy's dependency on hapi using the most recent supported version of hapi. To force a specific supported hapi version for your project, include hapi in your package dependencies along side of flappy.
 
-Flappy only supports hapi **17**.
+Flappy only supports hapi **17+**.
 
 ### Why?
 Less code in getting a hapi server up. Arguably more concise.

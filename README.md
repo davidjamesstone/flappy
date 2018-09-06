@@ -52,7 +52,7 @@ Flappy only supports hapi **17**.
 
 ### Why?
 Less code in getting a hapi server up. Arguably more concise.
-The fluent design encourages server code to always be register via plugins.
+The fluent design encourages server code to always be registered via plugins.
 
 
 ### More Examples

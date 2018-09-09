@@ -1,6 +1,6 @@
 {
   "name": "flappy",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Fluent hapi server composer",
   "main": "index.js",
   "scripts": {

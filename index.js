@@ -29,11 +29,13 @@ class Flappy {
   async compose () {
     const server = this.server
     const regs = this.registrations
-    const promises = regs.map(reg => server.register(reg.plugin, reg.options))
 
-    return Promise.all(promises).then(results => {
-      return server
-    })
+    for (let i = 0; i < regs.length; i++) {
+      const reg = regs[i]
+      await server.register(reg.plugin, reg.options)
+    }
+
+    return server
   }
 }
 

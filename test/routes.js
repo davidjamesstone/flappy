@@ -1,4 +1,5 @@
-exports.plugin = {
+export default {
+  name: 'routes',
   register: (server, options) => {
     server.route({
       path: '/',
@@ -9,6 +10,5 @@ exports.plugin = {
         }
       }
     })
-  },
-  pkg: require('../package.json')
+  }
 }

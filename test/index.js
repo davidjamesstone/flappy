@@ -1,7 +1,11 @@
-const Lab = require('lab')
-const Code = require('code')
-const flappy = require('..')
-const lab = exports.lab = Lab.script()
+import Lab from '@hapi/lab'
+import Code from '@hapi/code'
+import flappy from '../index.js'
+
+import blipp from 'blipp'
+import routes from './routes.js'
+
+export const lab = Lab.script()
 
 lab.experiment('Test', () => {
   let server
@@ -9,8 +13,8 @@ lab.experiment('Test', () => {
   // Create server before each test
   lab.before(async () => {
     server = await flappy({ port: 3000 })
-      .use(require('blipp'))
-      .use(require('./routes'))
+      .use(blipp)
+      .use(routes)
       .compose()
   })
 

@@ -1,4 +1,4 @@
-const hapi = require('hapi')
+import hapi from '@hapi/hapi'
 
 class Flappy {
   constructor (options) {
@@ -26,6 +26,12 @@ class Flappy {
     return this.server
   }
 
+  async initialize () {
+    await this.compose()
+    await this.server.initialize()
+    return this.server
+  }
+
   async compose () {
     const server = this.server
     const regs = this.registrations
@@ -39,6 +45,6 @@ class Flappy {
   }
 }
 
-module.exports = (options) => {
+export default (options) => {
   return new Flappy(options)
 }

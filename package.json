@@ -2,9 +2,11 @@
   "name": "flappy",
   "version": "1.0.0",
   "description": "Fluent hapi server composer",
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "lab"
+    "test": "lab",
+    "lint": "eslint"
   },
   "repository": {
     "type": "git",
@@ -24,12 +26,14 @@
   },
   "homepage": "https://github.com/davidjamesstone/flappy#readme",
   "dependencies": {
-    "hapi": "^17.5.4"
+    "@hapi/hapi": "^21.4.3"
   },
   "devDependencies": {
-    "blipp": "^3.0.0",
-    "code": "^5.2.0",
-    "inert": "^5.1.0",
-    "lab": "^15.1.2"
+    "@hapi/code": "^9.0.3",
+    "@hapi/inert": "^7.1.0",
+    "@hapi/lab": "^26.0.0",
+    "blipp": "^4.0.2",
+    "eslint": "^9.36.0",
+    "neostandard": "^0.12.2"
   }
 }

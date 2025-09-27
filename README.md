@@ -62,7 +62,7 @@ The fluent design encourages server code to always be registered via plugins.
 const flappy = require('flappy')
 
 try {
-  const server = flappy({ port: 3000 })
+  const server = await flappy({ port: 3000 })
     .use(require('blipp'))
     .use(require('inert'))
     .use(require('vision'), opts)
